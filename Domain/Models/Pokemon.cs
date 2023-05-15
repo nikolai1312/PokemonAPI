@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PokemonAPI.Domain.Models;
 
 namespace PokemonAPI.Domain.Models
 {
@@ -18,5 +19,11 @@ namespace PokemonAPI.Domain.Models
         [JsonProperty("weight")]
         public double? Weight { get; set; }
 
+        public List<Ability>? Abilities { get; set; }
+
+        public List<Types>? Types { get; set; }
+
     }
+
+
 }

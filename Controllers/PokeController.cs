@@ -19,7 +19,8 @@ namespace PokemonAPI.Controllers
 
         public void ShowPoke()
         {
-            Console.Write("Search the pokemon name: ");
+            Console.WriteLine("                  ______ _____ _   __ ___________ _______   __\r\n                  | ___ \\  _  | | / /|  ___|  _  \\  ___\\ \\ / /\r\n                  | |_/ / | | | |/ / | |__ | | | | |__  \\ V / \r\n                  |  __/| | | |    \\ |  __|| | | |  __| /   \\ \r\n                  | |   \\ \\_/ / |\\  \\| |___| |/ /| |___/ /^\\ \\\r\n                  \\_|    \\___/\\_| \\_/\\____/|___/ \\____/\\/   \\/\r\n                                                              ");
+            Console.Write("\nSearch the pokemon name: ");
             string result = Console.ReadLine().ToLower();
             try
             {
@@ -28,7 +29,10 @@ namespace PokemonAPI.Controllers
                 Console.WriteLine($"Pokemon Name: {poke.Name}");
                 Console.WriteLine($"Pokemon Height (decimeter): {poke.Height}");
                 Console.WriteLine($"Pokemon Weight (hectogram): {poke.Weight}");
-                
+                Console.WriteLine("Pokemon Abilities:");
+                poke.Abilities.ForEach(a => Console.WriteLine(a.ability.Name));
+                poke.Types.ForEach(a => Console.WriteLine($"Pokemon type: " + a.type.Name));
+
             } 
             catch ( Exception e ) 
             { 
@@ -50,7 +54,7 @@ namespace PokemonAPI.Controllers
             RestResponse response = client.Execute(request);
             if(response.StatusCode == System.Net.HttpStatusCode.NotFound )
             {
-                throw new Exception("Pokemon não encontrado, tente outro pokemon.");
+                throw new Exception("Pokemon not found, check the name of the pokemon or try another one!");
             }
 
             return response.Content;
@@ -69,26 +73,25 @@ namespace PokemonAPI.Controllers
             Console.WriteLine("\n2 -> Exit");
             Console.Write("\nSELECT ONE OPTION FROM ABOVE: ");
             int response = Convert.ToInt32(Console.ReadLine());
-            MenuOptionValidation(response);
             bool switchValidation = true;
             while (switchValidation) {
              switch (response) {
                 case 1: Console.Clear();
                         ShowPoke();
+                        Console.WriteLine("\n\nWant to search another Pokemon? (type 1 for Yes, 2 for no) ");
+                        response = Convert.ToInt32(Console.ReadLine());
+                        if(response == 2)
+                        {
                         switchValidation = false;
+                        }
                         break;
                 case 2: switchValidation = false;
                         break;
-            }
-            }
-        }
-
-        //VALIDAÇÃO MENU DE OPÇÕES      
-        public void MenuOptionValidation(int option)
-        {
-            if(option > 2 || option < 0)
-            {
-                throw new Exception("Digite um número válido!");
+                default: Console.WriteLine("\nInvalid option, select option 1 or 2!");
+                        Console.Write("Select the valid option: ");
+                        response = Convert.ToInt32(Console.ReadLine());
+                        break; 
+                }
             }
         }
 
