@@ -70,7 +70,7 @@ namespace PokemonAPI.Controllers
         public void MenuOptions() {
             Console.WriteLine("                          ___  ___ _____ _   _ _   _ \r\n                          |  \\/  ||  ___| \\ | | | | |\r\n                          | .  . || |__ |  \\| | | | |\r\n                          | |\\/| ||  __|| . ` | | | |\r\n                          | |  | || |___| |\\  | |_| |\r\n                          \\_|  |_/\\____/\\_| \\_/\\___/ ");
             Console.WriteLine("\n1 -> Search for the pokemon!");
-            Console.WriteLine("\n2 -> Exit");
+            Console.WriteLine("\n2 -> Quit");
             Console.Write("\nSELECT ONE OPTION FROM ABOVE: ");
             int response = Convert.ToInt32(Console.ReadLine());
             bool switchValidation = true;
@@ -78,7 +78,7 @@ namespace PokemonAPI.Controllers
              switch (response) {
                 case 1: Console.Clear();
                         ShowPoke();
-                        Console.WriteLine("\n\nWant to search another Pokemon? (type 1 for Yes, 2 for no) ");
+                        Console.WriteLine("\n\nWant to search for another Pokemon? (type 1 for Yes, 2 for no) ");
                         response = Convert.ToInt32(Console.ReadLine());
                         if(response == 2)
                         {
@@ -88,7 +88,7 @@ namespace PokemonAPI.Controllers
                 case 2: switchValidation = false;
                         break;
                 default: Console.WriteLine("\nInvalid option, select option 1 or 2!");
-                        Console.Write("Select the valid option: ");
+                        Console.Write("Select one valid option: ");
                         response = Convert.ToInt32(Console.ReadLine());
                         break; 
                 }
