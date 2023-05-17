@@ -27,8 +27,8 @@ namespace PokemonAPI.Controllers
                 var pokeString = GetPokemon(result);
                 var poke = JsonConvert.DeserializeObject<Pokemon>(pokeString);
                 Console.WriteLine($"Pokemon Name: {poke.Name}");
-                Console.WriteLine($"Pokemon Height (decimeter): {poke.Height}");
-                Console.WriteLine($"Pokemon Weight (hectogram): {poke.Weight}");
+                Console.WriteLine($"Pokemon Height (meter): {poke.Height / 10} m");
+                Console.WriteLine($"Pokemon Weight (kilogram): {poke.Weight / 10} kg");
                 Console.WriteLine("Pokemon Abilities:");
                 poke.Abilities.ForEach(a => Console.WriteLine(a.ability.Name));
                 poke.Types.ForEach(a => Console.WriteLine($"Pokemon type: " + a.type.Name));
